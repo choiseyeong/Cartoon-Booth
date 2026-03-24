@@ -1,9 +1,14 @@
+<div align="center">
+<img width="250" height="378" alt="Image" src="https://github.com/user-attachments/assets/680cd905-c480-43dd-bc53-a7554b819217" />
+</div>
+
 ## 1. Program Overview (프로그램 개요)
 
-**Cartoon Booth**는 Python의 OpenCV와 PyQt5로 제작된 포토부스 앱입니다.
-웹캠으로 직접 촬영하거나 컴퓨터에서 사진을 불러와 카툰 렌더링 필터를 적용하고, 원하는 프레임 레이아웃과 색상으로 꾸며 이미지를 저장할 수 있습니다! 📷💫
+**Cartoon Booth**는 Python의 OpenCV와 PyQt5로 제작된 포토부스 앱입니다.<br>
+웹캠으로 직접 촬영하거나 컴퓨터에서 사진을 불러와 카툰 렌더링 필터를 적용하고,<br>
+원하는 프레임 레이아웃과 색상으로 꾸며 이미지를 저장할 수 있습니다! 📷💫<br>
 
-이 프로그램은 다음 **3단계 Step**으로 진행됩니다:
+이 프로그램은 아래의 단계대로 흘러갑니다.
 
 ```
 STEP 1 — 프레임 레이아웃 선택
@@ -11,7 +16,8 @@ STEP 2 — 사진 촬영 또는 파일 선택
 STEP 3 — 프레임 색상 및 카툰 필터 적용 → 저장
 ```
 
-> `test_cartoon.py`는 카툰 렌더링 알고리즘을 단독으로 테스트하기 위해 별도 제작되었으며, 메인 앱 흐름과는 무관합니다. 렌터링 코드는 메인 앱과 동일합니다.
+> `test_cartoon.py`는 카툰 렌더링 코드의 단독으로 테스트 용도이며,<br>
+> 메인 앱 흐름과는 무관합니다. 렌터링 코드는 메인 앱과 동일합니다.
 
 ### 실행 방법
 
@@ -28,13 +34,16 @@ python test_cartoon.py
 ## 2. Features and Demo (기능과 데모)
 
 ### (1) Step 1: 프레임 레이아웃
-| 레이아웃 | 설명 |
-|---------|------|
-| 세로 4컷 | 사진 4장을 세로로 배치 |
-| 가로 3컷 | 사진 3장을 가로로 배치 |
-| 단일 | 사진 1장 |
+<img width="480" height="751" alt="Image" src="https://github.com/user-attachments/assets/1f752329-c377-43ca-9031-5b7802e422a9" />
+
+- 세로 4컷, 가로 3컷, 혹은 단일 프레임 레이아웃 중 선택
 
 ### (2) Step 2: 촬영 방식
+
+<img width="480" height="747" alt="Image" src="https://github.com/user-attachments/assets/4417fe50-ce35-477d-8298-f4730b222cae" />
+
+![Image](https://github.com/user-attachments/assets/c988d804-3978-405f-959f-b2ca7e2a77b3)
+
 - **웹캠 촬영** — 사진 1장마다 3초 카운트다운 + 흰색 플래시 효과
 - **파일 불러오기** — 컴퓨터에서 이미지 선택 (여러 번 나눠서 선택해 누적 가능)
 - 촬영된 사진은 썸네일로 표시되며 **개별 삭제(✕)** 가능
@@ -46,13 +55,12 @@ python test_cartoon.py
 
 ### (4) Step 3: 프레임 커스터마이징
 
-| 프레임 색상 | 로고 색상 |
-|------------|---------|
-| 흰색 | 검정 로고 |
-| 검정 | 흰색 로고 |
-| 브라운 | 흰색 로고 |
-| 스카이블루 | 검정 로고 |
-| 베이비핑크 | 검정 로고 |
+<img width="400" height="745" alt="Image" src="https://github.com/user-attachments/assets/f1e62518-782a-4fc1-ab90-b4ec66880b1f"> 
+
+<img width="400" height="745" alt="Image" src="https://github.com/user-attachments/assets/cdc94f6b-6efe-4158-8c8d-e4313ada0f61" />
+
+- 프레임 색상에 따라 검정색 혹은 흰색 로고가 적용된 프레임
+- 원본으로 사진을 찍은 경우에도 Step 3에서 카툰 렌더링 필터 적용 가능
 
 ### (5) 기타
 - 촬영 진행 상황을 나타내는 프로그레스 바
@@ -89,9 +97,15 @@ Claude Code – 코드 보완 및 디버깅 보조
 
 ### 😸 Good Example
 
+<img width="500" height="647" alt="Image" src="https://github.com/user-attachments/assets/133de084-75c4-4400-9569-bbba813bb62d" />
+
 ### 😿 Bad Example
 
+<img width="500" height="648" alt="Image" src="https://github.com/user-attachments/assets/3847cb7c-e0ab-42ec-8a4d-119289db7a93" />
+
 ### (1) 피부 톤 구분 없음
-피부, 머리카락, 배경을 구분하지 않고 전체에 동일한 필터를 적용합니다. 실제 카툰은 피부는 부드럽게, 윤곽선은 굵게 처리하는 식으로 영역별로 다르게 처리합니다.
+피부, 머리카락, 배경을 구분하지 않고 전체에 동일한 필터를 적용합니다.<br>
+실제 카툰은 피부는 부드럽게, 윤곽선은 굵게 처리하는 식으로 영역별로 다르게 처리합니다.
 ### (2) 채도 부스트 단순화
-HSV에서 S 채널을 일괄 1.5배 곱하는 방식이라 이미 채도가 높은 영역은 과포화되고, 낮은 영역은 여전히 칙칙하게 보일 수 있습니다.
+HSV에서 S 채널을 일괄 1.5배 곱하는 방식이라 이미 채도가 높은 영역은 과포화되고,<br>
+낮은 영역은 여전히 칙칙하게 보일 수 있습니다.
