@@ -1,5 +1,6 @@
 import sys
 import os
+from datetime import datetime
 
 import PyQt5
 _qt_plugin_path = os.path.join(os.path.dirname(PyQt5.__file__), "Qt5", "plugins")
@@ -295,9 +296,9 @@ class Step1Widget(QWidget):
 
         self.btn_next = QPushButton("다음  →")
         self.btn_next.setObjectName("primary")
-        self.btn_next.setFixedHeight(48)
+        self.btn_next.setFixedSize(160, 48)
         self.btn_next.clicked.connect(self._next)
-        root.addWidget(self.btn_next)
+        root.addWidget(self.btn_next, alignment=Qt.AlignCenter)
 
         self._select(0)
 
@@ -540,10 +541,8 @@ class Step2Widget(QWidget):
     def _snap(self):
         if self.current_bgr is None:
             return
-        frame = self.current_bgr.copy()
-        if self.rb_cartoon_on.isChecked():
-            frame = apply_cartoon(frame)
-        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # 항상 원본 저장 (카툰은 미리보기에만 적용, Step3에서 결정)
+        rgb = cv2.cvtColor(self.current_bgr.copy(), cv2.COLOR_BGR2RGB)
         self.captured.append(Image.fromarray(rgb))
         self._update_progress()
         # 플래시 효과
@@ -573,11 +572,8 @@ class Step2Widget(QWidget):
         for p in paths:
             if len(self.captured) >= self.needed:
                 break
+            # 항상 원본 저장 (카툰은 Step3에서 결정)
             img = Image.open(p).convert("RGB")
-            if self.rb_cartoon_on.isChecked():
-                arr = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-                arr = apply_cartoon(arr)
-                img = Image.fromarray(cv2.cvtColor(arr, cv2.COLOR_BGR2RGB))
             self.captured.append(img)
         self._update_progress()
         if len(self.captured) >= self.needed:
@@ -795,8 +791,9 @@ class Step3Widget(QWidget):
 
     def _save(self):
         result = build_frame(self.photos, self.layout_name, self._selected_color())
+        ts = datetime.now().strftime("%m%d_%H%M%S")
         path, _ = QFileDialog.getSaveFileName(
-            self, "저장 위치 선택", "CartoonBooth_결과.png",
+            self, "저장 위치 선택", f"CartoonBooth_{ts}.png",
             "PNG (*.png);;JPEG (*.jpg)"
         )
         if path:
