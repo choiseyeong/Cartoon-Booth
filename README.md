@@ -16,7 +16,7 @@ STEP 2 — 사진 촬영 또는 파일 선택
 STEP 3 — 프레임 색상 및 카툰 필터 적용 → 저장
 ```
 
-> `test_cartoon.py`는 카툰 렌더링 코드의 단독으로 테스트 용도이며,<br>
+> `test_cartoon.py`는 카툰 렌더링 코드의 단독 테스트 용도이며,<br>
 > 메인 앱 흐름과는 무관합니다. 렌터링 코드는 메인 앱과 동일합니다.
 
 ### 실행 방법
@@ -34,15 +34,15 @@ python test_cartoon.py
 ## 2. Features and Demo (기능과 데모)
 
 ### (1) Step 1: 프레임 레이아웃
-<img width="480" height="751" alt="Image" src="https://github.com/user-attachments/assets/1f752329-c377-43ca-9031-5b7802e422a9" />
+<img width="800" height="751" alt="Image" src="https://github.com/user-attachments/assets/1f752329-c377-43ca-9031-5b7802e422a9" />
 
 - 세로 4컷, 가로 3컷, 혹은 단일 프레임 레이아웃 중 선택
 
 ### (2) Step 2: 촬영 방식
 
-<img width="480" height="747" alt="Image" src="https://github.com/user-attachments/assets/4417fe50-ce35-477d-8298-f4730b222cae" />
+<img width="800" height="747" alt="Image" src="https://github.com/user-attachments/assets/4417fe50-ce35-477d-8298-f4730b222cae" />
 
-![Image](https://github.com/user-attachments/assets/c988d804-3978-405f-959f-b2ca7e2a77b3)
+<img src="https://github.com/user-attachments/assets/c988d804-3978-405f-959f-b2ca7e2a77b3" width="800"/>
 
 - **웹캠 촬영** — 사진 1장마다 3초 카운트다운 + 흰색 플래시 효과
 - **파일 불러오기** — 컴퓨터에서 이미지 선택 (여러 번 나눠서 선택해 누적 가능)
@@ -93,19 +93,26 @@ Claude Code – 코드 보완 및 디버깅 보조
 ---
 
 ## 5. Liminations (한계점)
-> 카툰 렌더링으로 만화 느낌을 제대로 표현하지 못하는 이유
+> 카툰 렌더링으로 일부 사진에서 만화 느낌을 제대로 표현하지 못하는 이유
 
 ### 😸 Good Example
 
-<img width="500" height="647" alt="Image" src="https://github.com/user-attachments/assets/133de084-75c4-4400-9569-bbba813bb62d" />
+<img width="800" height="647" alt="Image" src="https://github.com/user-attachments/assets/133de084-75c4-4400-9569-bbba813bb62d" />
 
 ### 😿 Bad Example
 
-<img width="500" height="648" alt="Image" src="https://github.com/user-attachments/assets/3847cb7c-e0ab-42ec-8a4d-119289db7a93" />
+<img width="800" height="648" alt="Image" src="https://github.com/user-attachments/assets/3847cb7c-e0ab-42ec-8a4d-119289db7a93" />
 
-### (1) 피부 톤 구분 없음
+<img width="800" height="647" alt="Image" src="https://github.com/user-attachments/assets/6f0bc79b-bfab-49ef-b2ac-90cc10dc8e0c" />
+
+### (1) 사람 얼굴 처리의 어려움
+피부는 부드럽게, 윤곽선은 굵게 처리하는 식인 실제 카툰과 달리,
 피부, 머리카락, 배경을 구분하지 않고 전체에 동일한 필터를 적용합니다.<br>
-실제 카툰은 피부는 부드럽게, 윤곽선은 굵게 처리하는 식으로 영역별로 다르게 처리합니다.
-### (2) 채도 부스트 단순화
+때문에 움직임이 많거나 표정 변화가 큰 사진에서는 의도치 않은 선이 과도하게 생성됩니다.<br>
+주름 등 순간적인 표정 주름이 엣지로 잡혀 실제보다 나이 들어 보이거나,<br>
+흩날리는 머리카락 하나하나에 선이 생겨 지저분한 결과물이 나올 수 있습니다.
+### (2) 채도 과포화 문제
 HSV에서 S 채널을 일괄 1.5배 곱하는 방식이라 이미 채도가 높은 영역은 과포화되고,<br>
 낮은 영역은 여전히 칙칙하게 보일 수 있습니다.
+
+
