@@ -49,6 +49,9 @@ python test_cartoon.py
 - 촬영된 사진은 썸네일로 표시되며 **개별 삭제(✕)** 가능
 
 ### (3) 카툰 렌더링 필터
+
+<img src="https://github.com/user-attachments/assets/6fd0c7b5-c74e-4594-af0f-09043005b0e7" width="800"/>
+
 - OpenCV 기반: 엣지 검출 + 양방향 필터 + 채도 부스트
 - Step 2 카메라 미리보기에서 실시간 ON/OFF 전환 가능
 - 최종 필터 적용은 **Step 3에서 결정** (이중 적용 방지를 위해 원본은 내부적으로 항상 보존)
